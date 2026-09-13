@@ -9,6 +9,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 scene.add(new THREE.AmbientLight(0xffffff, 0.15));
 const sunLight = new THREE.PointLight(0xffffff, 1.5, 30);
 scene.add(sunLight);
@@ -23,15 +24,18 @@ const earth = new THREE.Mesh(
   new THREE.SphereGeometry(0.45, 32, 32),
   new THREE.MeshStandardMaterial({ color: 0x42a5f5 })
 );
-earth.position.set(3, 0, 0);
 scene.add(earth);
 
 const saturn = new THREE.Mesh(
   new THREE.SphereGeometry(0.7, 32, 32),
   new THREE.MeshStandardMaterial({ color: 0xfdd835 })
 );
-saturn.position.set(-5, 0, 0);
 scene.add(saturn);
+
+const earthRadius = 3;
+const saturnRadius = 5;
+let earthAngle = 0;
+let saturnAngle = Math.PI;
 
 const stars = [];
 const starPos = [
@@ -53,10 +57,25 @@ const clock = new THREE.Clock();
 const animate = () => {
   requestAnimationFrame(animate);
   const t = clock.getElapsedTime();
+
+  sun.rotation.y += 0.005;
+
+  earthAngle += 0.01;
+  saturnAngle += 0.006;
+  earth.position.set(
+    Math.cos(earthAngle) * earthRadius, 0,
+    Math.sin(earthAngle) * earthRadius
+  );
+  saturn.position.set(
+    Math.cos(saturnAngle) * saturnRadius, 0,
+    Math.sin(saturnAngle) * saturnRadius
+  );
+
   stars.forEach(s => {
     const k = 1 + 0.6 * Math.sin(t * 2 + s.userData.phase);
     s.scale.setScalar(k);
   });
+
   controls.update();
   renderer.render(scene, camera);
 };
