@@ -9,7 +9,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 scene.add(new THREE.AmbientLight(0xffffff, 0.15));
 const sunLight = new THREE.PointLight(0xffffff, 1.5, 30);
 scene.add(sunLight);
@@ -19,6 +18,20 @@ const sun = new THREE.Mesh(
   new THREE.MeshBasicMaterial({ color: 0xe53935 })
 );
 scene.add(sun);
+
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(0.45, 32, 32),
+  new THREE.MeshStandardMaterial({ color: 0x42a5f5 })
+);
+earth.position.set(3, 0, 0);
+scene.add(earth);
+
+const saturn = new THREE.Mesh(
+  new THREE.SphereGeometry(0.7, 32, 32),
+  new THREE.MeshStandardMaterial({ color: 0xfdd835 })
+);
+saturn.position.set(-5, 0, 0);
+scene.add(saturn);
 
 const stars = [];
 const starPos = [
@@ -31,7 +44,7 @@ starPos.forEach(p => {
     new THREE.MeshBasicMaterial({ color: 0xffffff })
   );
   star.position.set(p[0], p[1], p[2]);
-  star.userData.phase = Math.random() * Math.PI * 2; 
+  star.userData.phase = Math.random() * Math.PI * 2;
   scene.add(star);
   stars.push(star);
 });
