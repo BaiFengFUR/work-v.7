@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>研究2</title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+    #panel {
+      position: fixed; top: 12px; left: 12px; z-index: 10;
+      background: rgba(0, 0, 0, 0.65); color: #fff;
+      padding: 10px 14px; border-radius: 8px;
+      font: 13px/1.7 "Microsoft YaHei", sans-serif; max-width: 360px;
+    }
+    #panel h3 { margin: 0 0 6px; font-size: 15px; color: #4fc3f7; }
+    #panel p { margin: 2px 0; }
+    #info {
+      position: fixed; bottom: 12px; left: 12px; z-index: 10;
+      background: rgba(0, 0, 0, 0.65); color: #ffd54f;
+      padding: 8px 14px; border-radius: 8px;
+      font: 14px/1.6 "Microsoft YaHei", sans-serif;
+    }
+    #tag {
+      position: fixed; z-index: 10; display: none; pointer-events: none;
+      background: rgba(255, 255, 255, 0.9); color: #000;
+      padding: 3px 10px; border-radius: 10px; font: 12px "Microsoft YaHei", sans-serif;
+      transform: translate(-50%, -160%); white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="tag"></div>
+  <script src="libs/three.min.js"></script>
+  <script src="libs/OrbitControls.js"></script>
+  <script src="research.js"></script>
+</body>
+</html>
